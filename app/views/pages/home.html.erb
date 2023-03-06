@@ -1,2 +1,62 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <%# <p>Find me in app/views/pages/home.html.erb</p> %>
+  <div class="main-container">
+    <div class="dashboard">
+      <% @portfolios.each do |portfolio| %>
+        <div class="flex-item card-portfolio">
+          <h2><%= portfolio.name  %></h2>
+          <h2> <%= number_with_delimiter(sprintf('%.2f', @dashboard["#{portfolio.id}"]["total_ptf"]), delimiter: " ", separator:",") %> € </h2>
+          <div class="flex-item card-coin btn btn-add btn-info">
+            <%= link_to "Add a transaction", new_portfolio_transaction_path(portfolio.id) %>
+          </div>
+          <%# header %>
+          <div class="flex-item card-coin-head">
+            <div class="flex-item card-coin-logo">        Logo    </div>
+            <div class="flex-item card-coin-infos-left">  Symbol  </div>
+            <div class="flex-item card-coin-infos-left">  Name    </div>
+            <div class="flex-item card-coin-infos-right"> Stock   </div>
+            <div class="flex-item card-coin-infos-right"> Price € </div>
+            <div class="card-coin-infos-right">           Value € </div>
+          </div>
+
+          <%# end of header %>
+          <% total = 0 %>
+          <%@dashboard["#{portfolio.id}"]["assets"].each do |coin|%>
+
+              <div class="flex-item card-coin">
+                <div class="flex-item card-coin-logo">
+                  <%= link_to (image_tag coin[1][:image_url], alt: coin[1][:name] ), portfolio_coin_path(coin[1]) %> </div>
+                <div class="flex-item card-coin-infos-left">  <%= coin[1][:symbol] %> </div>
+                <div class="flex-item card-coin-infos-left">  <%= coin[1][:name] %>   </div>
+                <div class="flex-item card-coin-infos-right"> <%= number_with_delimiter(coin[1][:stock], delimiter: " ", separator:",")  %>  </div>
+                <div class="flex-item card-coin-infos-right"> <%= number_with_delimiter(coin[1][:price], delimiter: " ", separator:",") %>  </div>
+                <div class="card-coin-infos-right">
+                  <%= number_with_delimiter(sprintf('%.2f',coin[1][:value]), delimiter: " ", separator:",") %> </div>
+                  <%total += coin[1][:value]%>
+              </div>
+
+          <% end %>
+          <div class="flex-item card-coin">
+                <div class="flex-item card-coin-logo"> </div>
+                <div class="flex-item card-coin-infos-left"> </div>
+                <div class="flex-item card-coin-infos-left"> </div>
+                <div class="flex-item card-coin-infos-right"> </div>
+                <div class="flex-item card-coin-infos-right"> TOTAL  </div>
+                <div class="flex-item card-coin-infos-right"> <%= number_with_delimiter(sprintf('%.2f', total), delimiter: " ", separator:",") %>  </div>
+          </div>
+
+          <div class="flex-item card-coin btn btn-add btn-info">
+            <%= link_to "Add a coin", new_portfolio_coin_path(portfolio.id) %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex-item card-portfolio ">
+        <div class="flex-item card-coin btn btn-add btn-info ">
+        <%= link_to "Add a portfolio", new_portfolio_path %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  padding: 80px 12px 20px;
+  // border-radius: 10px;
+  width: auto;
+  // box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.main-container {
+  display: flex;
+
+}

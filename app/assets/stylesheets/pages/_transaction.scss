@@ -1,0 +1,41 @@
+
+
+.add-transaction-coin {
+  display: flex;
+  flex-direction:row;
+  margin-top: 20px;
+  width: 20em;
+  align-items: center;
+  border-radius: 5px;
+
+
+}
+.estimated {
+  font-style: italic;
+  font-size: smaller;
+}
+.dontdisplay {
+  font-size: 0%;
+}
+
+.validate {
+  padding: 15px 30px;
+  background: linear-gradient(to right, #93bada, #22a1cb);
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  min-width: 60%;
+
+}
+
+.list {
+  margin-top: 50px;
+  h1 {
+    color: #22a1cb;
+  }
+  p {
+    font-size: smaller;
+    font-family: 'Courier New';
+  }
+
+}

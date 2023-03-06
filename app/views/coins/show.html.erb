@@ -1,0 +1,13 @@
+<h1>Coins#show</h1>
+<p>Find me in app/views/coins/show.html.erb</p>
+
+<li class="list-group-item border-0">
+      <div class="d-flex">
+        <div class="flex-item card-coin">
+          <div class="flex-item card-coin-logo"> <%= image_tag @coin.image_url, alt: @coin.name %> </div>
+          <div class="flex-item card-coin-infos-left">  <%= @coin.name %>   </div>
+          <div class="flex-item card-coin-infos-right"> <%= @coin.market_cap_rank %>   </div>
+        </div>
+      </div>
+</li>
+    <h2>Transaction list</h2>

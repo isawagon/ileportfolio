@@ -1,0 +1,148 @@
+
+.card-portfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 12px 20px;
+  border-radius: 10px;
+  // width: 800px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  gap: 1.5rem;
+
+}
+
+.card-portfolio h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $gray;
+
+}
+.card-coin-head {
+  overflow: hidden;
+  height: 40px;
+  // width: 700px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-coin {
+  overflow: hidden;
+  // height: 120px;
+  // width: 700px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+
+}
+
+.card-coin img {
+  height: 100%;
+  width: 40px;
+  object-fit: cover;
+}
+
+.card-coin h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-coin p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+
+}
+.card-coin-logo {
+  padding: 16px 16px 16px 16px;
+  align-items: space-around;
+  width: 100px;
+}
+
+.card-coin-infos-left {
+  padding: 16px;
+  align-items: space-around;
+  width: 100px;
+  display: flex;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0px;
+  text-align: left;
+  .button {
+    width: 100px;
+    font-weight: bold;
+  }
+}
+.card-coin-infos-right {
+  padding: 16px;
+  align-items: space-around;
+  width: 100px;
+  text-align: right;
+}
+
+.card-coin-infos-select {
+  padding: 16px;
+  align-items: space-around;
+  width: 20px;
+  height: 20px;
+  text-align: right;
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: #616161;
+  background: #dcd8d8;
+  color: #dcd8d8;
+  font-size: 50%;
+
+
+}
+
+.btn-add {
+  a {text-decoration: none;
+    color: #22a1cb;
+  }
+
+}
+
+.card-transaction {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-transaction-head {
+  overflow: hidden;
+  height: 40px;
+  background: white;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+.card-transaction-detail {
+  overflow: hidden;
+  height: 40px;
+  background: white;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+.card-transaction-left {
+  padding: 16px;
+  align-items: space-around;
+  width: 140px;
+  text-align: left;
+}
+.card-transaction-right {
+  padding: 16px;
+  align-items: space-around;
+  width: 120px;
+  text-align: right;
+}

@@ -1,0 +1,15 @@
+<p>Find me in app/views/coins/index.html.erb</p>
+<div class="container">
+  <%= simple_form_for :search, url: coins_url, method: "GET", html: { class: 'form_inline'} do |f| %>
+    <%= f.input :name, input_html: {value: ""}  %>
+    <%= f.submit "Search", class: "btn btn-primary" data-controller="search_crypto" data-action="click->search_api" %>
+  <% end %>
+  <% if @coins %>
+    <% @coins.each do |coin|%>
+      <%= coin.name %>
+    <% end %>
+  <% else %>
+    <%= "no crypto found"  %>
+  <% end %>
+
+</div>
