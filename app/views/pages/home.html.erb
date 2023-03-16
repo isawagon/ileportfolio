@@ -6,8 +6,13 @@
         <div class="flex-item card-portfolio">
           <h2><%= portfolio.name  %></h2>
           <h2> <%= number_with_delimiter(sprintf('%.2f', @dashboard["#{portfolio.id}"]["total_ptf"]), delimiter: " ", separator:",") %> € </h2>
-          <div class="flex-item card-coin btn btn-add btn-info">
-            <%= link_to "Add a transaction", new_portfolio_transaction_path(portfolio.id) %>
+          <div class="container d-flex justify-content-around">
+            <div class="flex-item card-coin btn btn-add btn-info">
+              <%= link_to "Add a transaction", new_portfolio_transaction_path(portfolio.id) %>
+            </div>
+            <div class="flex-item card-coin btn btn-add btn-info">
+              <%= link_to "Add a coin", new_portfolio_coin_path(portfolio.id) %>
+            </div>
           </div>
           <%# header %>
           <div class="flex-item card-coin-head">
@@ -45,9 +50,9 @@
                 <div class="flex-item card-coin-infos-right"> <%= number_with_delimiter(sprintf('%.2f', total), delimiter: " ", separator:",") %>  </div>
           </div>
 
-          <div class="flex-item card-coin btn btn-add btn-info">
-            <%= link_to "Add a coin", new_portfolio_coin_path(portfolio.id) %>
-          </div>
+          <%# <div class="flex-item card-coin btn btn-add btn-info"> %>
+            <%# <%= link_to "Add a coin", new_portfolio_coin_path(portfolio.id) %> 
+          <%# </div> %>
         </div>
       <% end %>
 

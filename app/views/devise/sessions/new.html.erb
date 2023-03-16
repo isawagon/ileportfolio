@@ -5,28 +5,33 @@
     <li>Create your portfolio </li>
     <li>Search and Add coins to your portfolio </li>
     <li>Then create your transactions </li>
+    <br>
   </ul>
+
+  <div class="container card-portfolio">
+    <p>Log in here </p>
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions validate text-center">
+        <%= f.button :submit, "Log in" %>
+      </div>
+      <br>
+      <p> Don't have an account ? <%= link_to "Sign up", new_registration_path(resource_name) %></p>
+    <% end %>
+  </div>
+  <%# <%= render "devise/shared/links" %>
+    <br>
+    <strong> Data provided by </strong>
+    <%=image_tag "https://static.coingecko.com/s/coingecko-branding-guide-8447de673439420efa0ab1e0e03a1f8b0137270fbc9c0b7c086ee284bd417fa1.png", class: 'brand'%>
 </div>
-
-<h2>Log in here or <%= link_to "Sign up", new_registration_path(resource_name) %><br /></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%# <%= render "devise/shared/links" %>
-  <strong> Data provided by </strong>
-  <%=image_tag "https://static.coingecko.com/s/coingecko-branding-guide-8447de673439420efa0ab1e0e03a1f8b0137270fbc9c0b7c086ee284bd417fa1.png", class: 'brand'%>
