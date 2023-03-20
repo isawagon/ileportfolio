@@ -3,10 +3,11 @@ class TransactionsController < ApplicationController
     @transactions = @Transaction.all.where(portfolio_id: params[:portfolio_id])
   end
 
+  def edit
+  end
+  
   def new
     @portfolio = Portfolio.find(params[:portfolio_id])
-    #@coins = Coin.all.where(portfolio_id: params[:portfolio_id])
-    # ajouter les prix actuels
     coins = Coin.all.where(portfolio_id: params[:portfolio_id])
     if coins.first
       list = "#{coins.first.gecko_coin}"
@@ -50,14 +51,33 @@ class TransactionsController < ApplicationController
     else
       coin_fees = coin_out
     end
-   
+
     if @transaction.save && coin_in.save && coin_out.save && coin_fees.save
       redirect_to new_portfolio_transaction_path, notice: "transaction ajoutée"
     else
-      # ActiveRecord::Rollback
+      # ActiveRecord::Rollback to do
       redirect_to new_portfolio_transaction_path, notice: "pb ajout transaction"
     end
+  end
 
+  def update
+    respond_to do |format|
+      if @transaction.update(transaction_params)
+        format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully updated." }
+        format.json { render :index, status: :ok, location: @transaction }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @transaction.destroy
+    respond_to do |format|
+      format.html { redirect_to transactions_url, notice: "Transaction was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -67,6 +87,10 @@ class TransactionsController < ApplicationController
                                         :coin_out_id,  :amount_out,
                                         :coin_fees_id, :amount_fees,
                                         :date)
+  end
+
+  def set_transaction
+    @transaction = Transaction.find(params[:id])
   end
 
   def search_price(list)

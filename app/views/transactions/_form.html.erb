@@ -1,0 +1,44 @@
+<div data-controller="transaction" data-transaction-position-value="afterbegin">
+    <%= simple_form_for([@portfolio, @transaction]) do |f| %>
+      <div class="add-transaction-coin">
+        <%= f.input :coin_in_id, as: :select, label: 'BUY/IN',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control ",
+        input_html:{data: { target:  "transaction.coinIn", action: "change->transaction#recapIn"   }} %>
+        <%= f.input :amount_in,
+        input_html:{data: { target:  "transaction.amountIn", action: "change->transaction#recapIn"   }} %>
+      </div>
+      <div data-transaction-target="resultsIn" class ="estimated">
+      </div>
+
+      <div class="add-transaction-coin">
+        <%= f.input :coin_out_id, as: :select, label: 'SELL/OUT',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control" ,
+        input_html:{data: { target:  "transaction.coinOut", action: "change->transaction#recapOut"   }} %>
+        <%= f.input :amount_out,
+          input_html:{data: { target:  "transaction.amountOut", action: "change->transaction#recapOut"   }} %>
+      </div>
+      <div data-transaction-target="resultsOut" class ="estimated">
+      </div>
+
+      <div class="add-transaction-coin">
+        <%= f.input :coin_fees_id, as: :select, label: 'FEES/OUT',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control",
+        input_html:{data: { target:  "transaction.coinFees", action: "change->transaction#recapFees"   }}  %>
+        <%= f.input :amount_fees,
+          input_html:{data: { target:  "transaction.amountFees", action: "change->transaction#recapFees"   }}  %>
+      </div>
+      <div data-transaction-target="resultsFees" class ="estimated">
+      </div>
+
+      <div>
+        <%# faire saisir la date, valeur par défaut = today %>
+        <%# <%= f.input :date, prompt: DateTime.now, default: DateTime.now %>
+      </div>
+      <%= f.button :submit, class: 'validate', action: 'click->transaction#disable'%>
+    <% end %>
