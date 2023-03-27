@@ -1,0 +1,82 @@
+
+<div class="container">
+  <h1><%=@portfolio.name%></h1>
+  <h1>Editing transaction</h1>
+
+  <%# <%= render "form", transaction: @transaction %>
+  <div data-controller="transaction" data-transaction-position-value="afterbegin">
+    <%= simple_form_for([@portfolio, @transaction]) do |f| %>
+      <div class="add-transaction-coin">
+        <%= f.input :coin_in_id, as: :select, label: 'BUY/IN',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control ",
+        input_html:{data: { target:  "transaction.coinIn", action: "change->transaction#recapIn"   }} %>
+        <%= f.input :amount_in,
+        input_html:{data: { target:  "transaction.amountIn", action: "change->transaction#recapIn"   }} %>
+      </div>
+      <div data-transaction-target="resultsIn" class ="estimated">
+      </div>
+
+      <div class="add-transaction-coin">
+        <%= f.input :coin_out_id, as: :select, label: 'SELL/OUT',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control" ,
+        input_html: { \
+          "data-transaction-target": "coinOut", \
+          "data-action": "change->transaction#recapOut"  \
+          } %>
+        <%= f.input :amount_out,
+          input_html:{data: { target:  "transaction.amountOut", action: "change->transaction#recapOut"   }} %>
+      </div>
+      <div data-transaction-target="resultsOut" class ="estimated">
+      </div>
+
+      <div class="add-transaction-coin">
+        <%= f.input :coin_fees_id, as: :select, label: 'FEES/OUT',
+        collection: @coins.order(:name), prompt: "Select",
+        input_html: {class: "js-example-basic-single"},
+        class: "form-control",
+        input_html:{data: { target:  "transaction.coinFees", action: "change->transaction#recapFees"   }}  %>
+        <%= f.input :amount_fees,
+          input_html:{data: { target:  "transaction.amountFees", action: "change->transaction#recapFees"   }}  %>
+      </div>
+      <div data-transaction-target="resultsFees" class ="estimated">
+      </div>
+
+      <div>
+        <%# faire saisir la date, valeur par défaut = today %>
+        <%# <%= f.input :date, prompt: DateTime.now, default: DateTime.now %>
+      </div>
+      <%= f.button :submit, class: 'validate', action: 'click->transaction#disable'%>
+    <% end %>
+
+  <div class="container list">
+      <h1>Registered Transactions</h1>
+      <%@registered.each do |t| %>
+        <%symbol_in = @coins.find(t.coin_in_id).symbol%>
+        <%symbol_out = @coins.find(t.coin_out_id).symbol%>
+        <%if t.coin_fees_id
+        symbol_fees = @coins.find(t.coin_fees_id).symbol
+        else
+        symbol_fees = "none"
+        end%>
+        <%t.date ? date = t.date.strftime("%d%b%y ") : date = t.created_at.strftime("%d%b%y ")%>
+        <%# <%date = t.created_at.strftime("%d%b%y %Hh%M")%>
+        <%# <%date = t.date.strftime("%d%b%y ") %>
+
+        <p> <%=date%> Buy <%=symbol_in%> <%=t.amount_in%> Sell <%=symbol_out%> <%=t.amount_out%> Fees <%=symbol_fees%> <%=t.amount_fees%></p>
+
+      <%end%>
+    </div>
+  </div>
+
+  <%#  donner les infos sur les cryptos du ptf au js %>
+  <div class="dontdisplay">
+  <ol id="id">     <%@coins.each do |c|%> <li><%=c.id%>     </li> <% end %> </ol>
+  <ol id="symbol"> <%@coins.each do |c|%> <li><%=c.symbol%> </li> <% end %> </ol>
+  <ol id="stock">  <%@coins.each do |c|%> <li><%=c.stock%>  </li> <% end %> </ol>
+  <ol id="price">  <%@coins.each do |c|%> <li><%=c.price%>  </li> <% end %> </ol>
+  </div>
+</div>

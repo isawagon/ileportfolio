@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   resources :portfolios, only: %i[new create index] do
     resources :coins, only: %i[new create show]
-    resources :transactions, only: %i[new create index]
+    resources :transactions
   end
-
+  resources :transactions
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

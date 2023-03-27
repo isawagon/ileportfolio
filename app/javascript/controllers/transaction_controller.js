@@ -17,9 +17,13 @@ export default class extends Controller {
   }
 
   recapIn() {
+    console.log("Hello recapIn", this.coinInTarget.value);
     const coinIn = this.coinInTarget.value
     const amountIn = this.amountInTarget.value ? this.amountInTarget.value :0
     const portfolioContent = this.portfolioContent();
+    console.log("Hello");
+    console.log(coinIn);
+
     this.resultsInTarget.innerText = this.insertstockprice(coinIn, amountIn, portfolioContent);
   }
 
