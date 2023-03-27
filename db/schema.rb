@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_222040) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_202947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_222040) do
     t.string "gecko_coin"
     t.string "symbol"
     t.string "name"
-    t.float "stock"
+    t.decimal "stock"
     t.float "price"
     t.float "change"
     t.integer "market_cap_rank"
@@ -41,15 +41,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_222040) do
     t.bigint "portfolio_id", null: false
     t.date "date"
     t.bigint "coin_in_id"
-    t.float "amount_in"
+    t.decimal "amount_in"
     t.float "amount_in_euro"
     t.float "amount_in_btc"
     t.bigint "coin_out_id"
-    t.float "amount_out"
+    t.decimal "amount_out"
     t.float "amount_out_euro"
     t.float "amount_out_btc"
     t.bigint "coin_fees_id"
-    t.float "amount_fees"
+    t.decimal "amount_fees"
     t.float "amount_fees_euro"
     t.float "amount_fees_btc"
     t.datetime "created_at", null: false
